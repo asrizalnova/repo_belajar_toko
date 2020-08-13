@@ -18,7 +18,7 @@ class CreateCustomersTable extends Migration
             $table->String('nama_customers');
             $table->enum('Gender',['L','P']);
             $table->text('alamat');
-            $table->integer('no_telepon');
+            $table->string('no_telepon');
         });
     }
 
