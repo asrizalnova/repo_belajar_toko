@@ -8,6 +8,14 @@ use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
+    public function show()
+    {
+        return Product::all();
+    }
+    public function detail($id)
+    {
+        $flight = Product::find($id);
+    }
     public function store(Request $request)
     {
         $validator=validator::make($request->all(),

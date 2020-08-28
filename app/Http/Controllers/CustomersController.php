@@ -8,6 +8,14 @@ use Illuminate\Support\Facades\Validator;
 
 class CustomersController extends Controller
 {
+    public function show()
+    {
+      return Customers::all();
+    }
+    public function detail($id)
+    {
+        $flight = Customers::find($id);
+    }
     public function store(Request $request)
     {
         $validator=validator::make($request->all(),

@@ -8,6 +8,14 @@ use Illuminate\Support\Facades\Validator;
 
 class PembayaranController extends Controller
 {
+   public function show()
+   {
+       return Pembayaran::all();
+   }
+   public function detail($id)
+   {
+       $flight = Pembayaran::find($id);
+   }
     public function store(Request $request)
     {
         $validator=validator::make($request->all(),
