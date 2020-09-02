@@ -14,7 +14,10 @@ class PembayaranController extends Controller
    }
    public function detail($id)
    {
-       $flight = Pembayaran::find($id);
+       $data = Pembayaran::where('id_Pembayaran', $id)->first();
+
+
+       return Response()->json($data);
    }
     public function store(Request $request)
     {
@@ -45,4 +48,31 @@ class PembayaranController extends Controller
             return Response()->json(['status' => 0]);
         }
     }
+      public function update($id, Request $request)
+      {
+          $validator=validator::make($request->all(),
+            [
+                'tanggal_bayar' => 'required',
+                'total_bayar' => 'required',
+                'id_orders' => 'required'
+            ]
+        );
+
+        if ($validator->fails()) {
+            return Response()->json($validator->errors());
+        }
+
+        $ubah = Pembayaran::where('id_Pembayaran', $id)->update([
+            'tanggal_bayar' =>$request->tanggal_bayar,
+            'total_bayar' =>$request->total_bayar,
+            'id_orders' =>$request->id_orders
+        ]);
+
+        if($ubah) {
+            return Response()->json(['status' => 1]);
+        }
+        else {
+            return Response()->json(['status' => 0]);
+        }
+      }
 }
