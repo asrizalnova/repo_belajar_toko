@@ -75,4 +75,14 @@ class PembayaranController extends Controller
             return Response()->json(['status' => 0]);
         }
       }
+       public function destroy($id)
+       {
+           $hapus = Pembayaran::where('id_Pembayaran', $id)->delete();
+           if($hapus) {
+               return Response()->json(['status' => 1]);
+           }
+           else {
+               return Response()->json(['status' => 0]);
+           }
+       }
 }
